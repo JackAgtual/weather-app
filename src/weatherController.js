@@ -1,4 +1,4 @@
-export default function WeatherController(FetchWeather) {
+export default function WeatherController(FetchWeather, UnitConverter) {
     const _submitBtn = document.getElementById('submit')
     const _input = document.getElementById('location-input')
     const _cityValueEl = document.getElementById('city')
@@ -9,6 +9,6 @@ export default function WeatherController(FetchWeather) {
         if (!data) return;
 
         _cityValueEl.innerText = data.name
-        _tempValueEl.innerText = `${Math.round((data.main.temp - 273.15) * 9 / 5 + 32)} \u00B0F`
+        _tempValueEl.innerText = `${Math.round(UnitConverter.kelvin2fahrenhet(data.main.temp))} \u00B0F`
     })
 }
