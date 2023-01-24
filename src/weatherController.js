@@ -4,7 +4,9 @@ export default function WeatherController(FetchWeather, UnitConverter) {
     const _cityValueEl = document.getElementById('city')
     const _tempValueEl = document.getElementById('temperature')
 
-    _submitBtn.addEventListener('click', async () => {
+    _submitBtn.addEventListener('click', async e => {
+        e.preventDefault()
+
         const data = await FetchWeather.getWeatherAtLocation(_input.value)
         if (!data) return;
 
