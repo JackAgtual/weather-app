@@ -1,3 +1,8 @@
 h1 {
     color: red;
 }
+
+input:invalid,
+input:invalid:focus {
+    outline-color: red;
+}
