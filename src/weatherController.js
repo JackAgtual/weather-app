@@ -4,13 +4,20 @@ export default function WeatherController(FetchWeather, UnitConverter) {
     const _cityValueEl = document.getElementById('city')
     const _tempValueEl = document.getElementById('temperature')
 
-    _submitBtn.addEventListener('click', async e => {
+    const presentWeatherData = async e => {
         e.preventDefault()
 
-        const data = await FetchWeather.getWeatherAtLocation(_input.value)
-        if (!data) return;
+        try {
+            const data = await FetchWeather.getWeatherAtLocation(_input.value)
+            console.log(`data: ${data}`)
+            _cityValueEl.innerText = data.name
+            _tempValueEl.innerText = `${Math.round(UnitConverter.kelvin2fahrenhet(data.main.temp))} \u00B0F`
+        } catch {
+            console.log(`invalid city`)
+            _input.setCustomValidity('Invalid city')
+        }
+    }
 
-        _cityValueEl.innerText = data.name
-        _tempValueEl.innerText = `${Math.round(UnitConverter.kelvin2fahrenhet(data.main.temp))} \u00B0F`
-    })
+    _submitBtn.addEventListener('click', presentWeatherData)
+
 }
