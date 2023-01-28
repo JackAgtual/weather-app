@@ -1,5 +1,5 @@
 export default function WeatherController(FetchWeather, UnitConverter) {
-    const _submitBtn = document.getElementById('submit')
+    const _form = document.getElementById('form')
     const _input = document.getElementById('location-input')
     const _cityValueEl = document.getElementById('city')
     const _tempValueEl = document.getElementById('temperature')
@@ -18,6 +18,6 @@ export default function WeatherController(FetchWeather, UnitConverter) {
         }
     }
 
-    _submitBtn.addEventListener('click', presentWeatherData)
+    _form.addEventListener('submit', presentWeatherData)
 
 }
