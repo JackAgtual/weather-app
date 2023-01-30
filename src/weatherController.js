@@ -16,13 +16,26 @@ export default function WeatherController(FetchWeather, UnitConverter) {
         _input.select()
     }
 
+    const _makeEachWordInStringUpperCase = string => {
+        // string contains words separated by a space
+        return string
+            .split(' ')
+            .reduce(
+                (combinedString, curWord) => {
+                    const capitalizedWord = curWord.charAt(0).toUpperCase() + curWord.slice(1)
+                    return `${combinedString} ${capitalizedWord}`
+                }, ''
+            )
+            .trim()
+    }
+
     const _renderPageForValidSearch = async cityName => {
         const data = await FetchWeather.getWeatherAtLocation(cityName)
         _cityValueEl.innerText = data.name
         _countryValueEl.innerText = data.sys.country
         _tempValueEl.innerText = `${Math.round(data.main.temp)} \u00B0F`
         _feelsLikeTempValueEl.innerText = `${Math.round(data.main.feels_like)} \u00B0F`
-        _cloudStatusValueEl.innerText = data.weather[0].description
+        _cloudStatusValueEl.innerText = _makeEachWordInStringUpperCase(data.weather[0].description)
         _humidityValueEl.innerText = data.main.humidity
         _windspeedValueEl.innerText = data.wind.speed
         _input.blur()
