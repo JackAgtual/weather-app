@@ -43,4 +43,6 @@ export default function WeatherController(FetchWeather, UnitConverter) {
 
     // prevent custom validity message from popping up
     _input.addEventListener('input', () => _input.setCustomValidity(''))
+
+    _renderPageForValidSearch('los angeles')
 }
