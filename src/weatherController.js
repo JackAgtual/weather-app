@@ -11,8 +11,8 @@ export default function WeatherController(FetchWeather, UnitConverter) {
         _input.select()
     }
 
-    const _renderPageForValidSearch = async () => {
-        const data = await FetchWeather.getWeatherAtLocation(_input.value)
+    const _renderPageForValidSearch = async cityName => {
+        const data = await FetchWeather.getWeatherAtLocation(cityName)
         _cityValueEl.innerText = data.name
         _tempValueEl.innerText = `${Math.round(UnitConverter.kelvin2fahrenhet(data.main.temp))} \u00B0F`
         _input.blur()
@@ -23,7 +23,7 @@ export default function WeatherController(FetchWeather, UnitConverter) {
 
         _input.setCustomValidity('')
         try {
-            _renderPageForValidSearch()
+            _renderPageForValidSearch(_input.value)
         } catch {
             _renderPageForInvalidSearch()
         }
