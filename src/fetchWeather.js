@@ -9,7 +9,7 @@ export default function FetchWeather() {
     }
 
     const _getWeatherFromLatLon = async (lat, lon) => {
-        const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${_API_KEY}`, { mode: 'cors' })
+        const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${_API_KEY}&units=imperial`, { mode: 'cors' })
         return response.json()
     }
 

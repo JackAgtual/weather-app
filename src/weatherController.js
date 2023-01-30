@@ -2,7 +2,12 @@ export default function WeatherController(FetchWeather, UnitConverter) {
     const _form = document.getElementById('form')
     const _input = document.getElementById('location-input')
     const _cityValueEl = document.getElementById('city')
+    const _countryValueEl = document.getElementById('country')
     const _tempValueEl = document.getElementById('temperature')
+    const _feelsLikeTempValueEl = document.getElementById('feels-like-temp')
+    const _cloudStatusValueEl = document.getElementById('cloud-status')
+    const _humidityValueEl = document.getElementById('humidity')
+    const _windspeedValueEl = document.getElementById('windspeed')
 
     const _renderPageForInvalidSearch = () => {
         _input.setCustomValidity('Invalid city')
@@ -14,7 +19,12 @@ export default function WeatherController(FetchWeather, UnitConverter) {
     const _renderPageForValidSearch = async cityName => {
         const data = await FetchWeather.getWeatherAtLocation(cityName)
         _cityValueEl.innerText = data.name
-        _tempValueEl.innerText = `${Math.round(UnitConverter.kelvin2fahrenhet(data.main.temp))} \u00B0F`
+        _countryValueEl.innerText = data.sys.country
+        _tempValueEl.innerText = `${Math.round(data.main.temp)} \u00B0F`
+        _feelsLikeTempValueEl.innerText = `${Math.round(data.main.feels_like)} \u00B0F`
+        _cloudStatusValueEl.innerText = data.weather[0].description
+        _humidityValueEl.innerText = data.main.humidity
+        _windspeedValueEl.innerText = data.wind.speed
         _input.blur()
     }
 
