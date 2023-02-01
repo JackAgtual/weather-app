@@ -17,16 +17,29 @@
             <input type="text" id="location-input" placeholder="City name">
             <button type="submit" id="submit">Submit</button>
         </form>
-        <p><span id="city"></span>, <span id="country"></span></p>
-        <p id="temperature"></p>
-        <p>
-            Feels like <span id="feels-like-temp"></span> |
-            <span id="cloud-status"></span> |
-            Humidity: <span id="humidity"></span>%
-        </p>
-        <p>
-            Windspeed: <span id="windspeed"></span> mph
-        </p>
+        <!-- TODO: style this and take inspiration from google weather -->
+        <div class="weather-data">
+            <div>
+                <div class="weather-and-icon">
+                    <div class="temperature">
+                        <span id="temp-val">70</span>
+                        <span id="unit-f" class="temp-unit">&#176F </span>
+                        <span>&nbsp|&nbsp</span>
+                        <span id="unit-c" class="temp-unit unselected-unit">&#176C</span>
+                    </div>
+                    <img id="weather-icon" src="http://openweathermap.org/img/wn/10d@2x.png" alt="current weather">
+                </div>
+                <div id="description">
+                    <div class="location">San Diego, US</div>
+                    <div class="weather-description">Cloudy</div>
+                </div>
+            </div>
+            <div class="weather-stats">
+                <div class="feels-like">Feels like 68</div>
+                <div class="humidity">Humidity: 40%</div>
+                <div class="windspeed">Windspeed: 2.1 mph</div>
+            </div>
+        </div>
     </div>
 
 

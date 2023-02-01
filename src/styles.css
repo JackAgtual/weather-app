@@ -29,3 +29,43 @@ input:invalid,
 input:invalid:focus {
     outline-color: red;
 }
+
+.weather-data {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.weather-and-icon {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+#weather-icon {
+    height: 5rem;
+}
+
+.weather-data>div:first-child {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.temperature {
+    font-size: 2rem;
+    display: flex;
+}
+
+.unselected-unit {
+    color: grey;
+}
+
+.temperature>span:not(:first-child) {
+    font-size: 1rem;
+    align-self: flex-start;
+}
+
+.weather-stats>div:not(:first-child) {
+    margin-top: 0.25rem;
+}
