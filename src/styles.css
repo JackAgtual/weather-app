@@ -57,6 +57,10 @@ input:invalid:focus {
     display: flex;
 }
 
+.unselected-unit.temp-unit:hover {
+    cursor: pointer;
+}
+
 .unselected-unit {
     color: grey;
 }
