@@ -1,11 +1,11 @@
 export default function WeatherController(FetchWeather, UnitConverter) {
     const _form = document.getElementById('form')
     const _input = document.getElementById('location-input')
-    const _cityValueEl = document.getElementById('city')
-    const _countryValueEl = document.getElementById('country')
-    const _tempValueEl = document.getElementById('temperature')
+    const _locationValueEl = document.getElementById('location')
+    const _tempValueEl = document.getElementById('temp-val')
+    const _weatherIcon = document.getElementById('weather-icon')
+    const _weatherDescriptionValueEl = document.getElementById('weather-description')
     const _feelsLikeTempValueEl = document.getElementById('feels-like-temp')
-    const _cloudStatusValueEl = document.getElementById('cloud-status')
     const _humidityValueEl = document.getElementById('humidity')
     const _windspeedValueEl = document.getElementById('windspeed')
 
@@ -31,13 +31,13 @@ export default function WeatherController(FetchWeather, UnitConverter) {
 
     const _renderPageForValidSearch = async cityName => {
         const data = await FetchWeather.getWeatherAtLocation(cityName)
-        _cityValueEl.innerText = data.name
-        _countryValueEl.innerText = data.sys.country
-        _tempValueEl.innerText = `${Math.round(data.main.temp)} \u00B0F`
-        _feelsLikeTempValueEl.innerText = `${Math.round(data.main.feels_like)} \u00B0F`
-        _cloudStatusValueEl.innerText = _makeEachWordInStringUpperCase(data.weather[0].description)
-        _humidityValueEl.innerText = data.main.humidity
-        _windspeedValueEl.innerText = data.wind.speed
+        _tempValueEl.innerText = `${Math.round(data.main.temp)}`
+        _weatherIcon.src = `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`
+        _locationValueEl.innerText = `${data.name}, ${data.sys.country}`
+        _weatherDescriptionValueEl.innerText = _makeEachWordInStringUpperCase(data.weather[0].description)
+        _feelsLikeTempValueEl.innerText = `Feels like${Math.round(data.main.feels_like)} \u00B0F`
+        _humidityValueEl.innerText = `Humidity: ${data.main.humidity}%`
+        _windspeedValueEl.innerText = `Windspeed: ${data.wind.speed}`
         _input.blur()
     }
 
@@ -57,5 +57,5 @@ export default function WeatherController(FetchWeather, UnitConverter) {
     // prevent custom validity message from popping up
     _input.addEventListener('input', () => _input.setCustomValidity(''))
 
-    // _renderPageForValidSearch('los angeles')
+    _renderPageForValidSearch('los angeles')
 }
