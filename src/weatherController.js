@@ -35,7 +35,7 @@ export default function WeatherController(FetchWeather, UnitConverter) {
         _weatherIcon.src = `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`
         _locationValueEl.innerText = `${data.name}, ${data.sys.country}`
         _weatherDescriptionValueEl.innerText = _makeEachWordInStringUpperCase(data.weather[0].description)
-        _feelsLikeTempValueEl.innerText = `Feels like${Math.round(data.main.feels_like)} \u00B0F`
+        _feelsLikeTempValueEl.innerText = `Feels like ${Math.round(data.main.feels_like)}`
         _humidityValueEl.innerText = `Humidity: ${data.main.humidity}%`
         _windspeedValueEl.innerText = `Windspeed: ${data.wind.speed}`
         _input.blur()
