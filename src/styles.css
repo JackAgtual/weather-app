@@ -25,6 +25,10 @@ p {
     border-radius: 10px;
 }
 
+.card>h1 {
+    text-align: center;
+}
+
 input:invalid,
 input:invalid:focus {
     outline-color: red;
