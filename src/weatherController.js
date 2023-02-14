@@ -40,11 +40,11 @@ export default function WeatherController(FetchWeather, UnitConverter) {
 
         _storeTemperatureValues(data)
 
-        _tempValueEl.innerText = `${Math.round(data.main.temp)}`
+        _tempValueEl.innerText = `${Math.round(_temperatureVal)}`
         _weatherIcon.src = `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`
         _locationValueEl.innerText = `${data.name}, ${data.sys.country}`
         _weatherDescriptionValueEl.innerText = _makeEachWordInStringUpperCase(data.weather[0].description)
-        _feelsLikeTempValueEl.innerText = `Feels like ${Math.round(data.main.feels_like)}`
+        _feelsLikeTempValueEl.innerText = `Feels like ${Math.round(_feelsLikeVal)}`
         _humidityValueEl.innerText = `Humidity: ${data.main.humidity}%`
         _windspeedValueEl.innerText = `Windspeed: ${data.wind.speed}`
         _input.blur()
@@ -63,8 +63,13 @@ export default function WeatherController(FetchWeather, UnitConverter) {
 
     const _storeTemperatureValues = data => {
         // store temperatures for unit conversions
-        _temperatureVal = data.main.temp
-        _feelsLikeVal = data.main.feels_like
+        if (_currentUnitIsF) {
+            _temperatureVal = data.main.temp
+            _feelsLikeVal = data.main.feels_like
+        } else {
+            _temperatureVal = UnitConverter.fahrenheit2celcius(data.main.temp)
+            _feelsLikeVal = UnitConverter.fahrenheit2celcius(data.main.feels_like)
+        }
     }
 
     const _toggleSelectedUnitClassOnUnitElements = () => {
